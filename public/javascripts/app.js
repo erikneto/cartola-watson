@@ -22,6 +22,7 @@ CWController.controller('CWCtrl', ['$scope','$http',
         $scope.sortReverse  = false;  // set the default sort order
         $scope.players = [];
         $scope.filtro = {};
+        $scope.sorter = 'nome';
         $scope.posicoes = [
             [1, 'Goleiro'],
             [2, 'Lateral'],
@@ -50,6 +51,17 @@ CWController.controller('CWCtrl', ['$scope','$http',
                 }
                   
        });
+       
+        $scope.toggleSort = function(index) {
+
+            if($scope.sorter === index){
+                $scope.sortReverse = !$scope.sortReverse;
+            }
+            $scope.sorter = index;
+           
+        };
+       
+       
        $scope.filtrar = function(){
            $scope.players = [];
             $http({

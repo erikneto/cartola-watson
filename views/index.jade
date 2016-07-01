@@ -7,16 +7,36 @@ block content
     table.table-bordered.table-striped(data-role='table', data-mode='columntoggle', data-filter='true', data-input='#basic-url')
       tbody
           tr
-              th Nome
-              th Apelido
+              th 
+                a(href='#', ng-click="toggleSort('nome')") Nome
+                    span(ng-show="sorter == 'nome'")
+                      span(ng-show='!sortReverse') ^
+                      span(ng-show='sortReverse') v
+              th 
+                a(href='#', ng-click="toggleSort('apelido')") Apelido
+                    span(ng-show="sorter == 'apelido'")
+                      span(ng-show='!sortReverse') ^
+                      span(ng-show='sortReverse') v
               th Foto
-              th Valor
-              th Variação
-              th Media
+              th 
+                a(href='#', ng-click="toggleSort('preco_num')") Valor
+                    span(ng-show="sorter == 'preco_num'")
+                      span(ng-show='!sortReverse') ^
+                      span(ng-show='sortReverse') v
+              th 
+                a(href='#', ng-click="toggleSort('variacao_num')") Variação
+                    span(ng-show="sorter == 'variacao_num'")
+                      span(ng-show='!sortReverse') ^
+                      span(ng-show='sortReverse') v
+              th 
+                a(href='#', ng-click="toggleSort('media_num')") Media
+                    span(ng-show="sorter == 'media_num'")
+                      span(ng-show='!sortReverse') ^
+                      span(ng-show='sortReverse') v
               th Jogos
               th Posicao
               th Status
-          tr(ng-repeat='jogador in players | filter:filtro:strict | orderBy:sorter:sortReverse')
+          tr(ng-repeat='jogador in players | orderBy:sorter:sortReverse')
               td {{jogador.nome}}
               td {{jogador.apelido}}
               td

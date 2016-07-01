@@ -76,8 +76,7 @@ router.get('/loadcartola/:posicao', function(req, res, next) {
                     name: body.atletas[i].nome,
                     values: body.atletas[i]
                 });
-            }else
-                console.log("excluido: %s porque %d é diferente de %d", body.atletas[i].nome,body.atletas[i].posicao_id , parseInt(req.params.posicao));
+            }
          }
         
         var tradeoffDillema = {

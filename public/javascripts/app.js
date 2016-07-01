@@ -21,25 +21,55 @@ CWController.controller('CWCtrl', ['$scope','$http',
         $scope.sortType     = 'Pillar'; // set the default sort type
         $scope.sortReverse  = false;  // set the default sort order
         $scope.players = [];
+        $scope.filtro = {};
+        $scope.posicoes = [
+            [1, 'Goleiro'],
+            [2, 'Lateral'],
+            [3, 'Zagueiro'],
+            [4, 'Meia'],
+            [5, 'Atacante'],
+            [6, 'Treinador']
+        ];
 
          
 
         $http({
             method: 'GET',
-            url: 'https://api.cartolafc.globo.com/atletas/mercado'
+            url: '/api/loadcartola'
            }).then(function successCallback(response) {
                 $scope.headers = [];
                 for (var key in response.data[0]) {
                     $scope.headers.push(key);
                 }
 
+
                var i;
                var x;
                for(i=0 ; i < response.data.atletas.length; i++){
-                   $scope.players.push($scope.headers.atletas[x]);
+                   $scope.players.push(response.data.atletas[i]);
                 }
                   
        });
+       $scope.filtrar = function(){
+           $scope.players = [];
+            $http({
+                method: 'GET',
+                url: '/api/loadcartola/'+ $scope.posicao[0]
+               }).then(function successCallback(response) {
+                    $scope.headers = [];
+                    for (var key in response.data[0]) {
+                        $scope.headers.push(key);
+                    }
+
+
+                   var i;
+                   var x;
+                   for(i=0 ; i < response.data.atletas.length; i++){
+                       $scope.players.push(response.data.atletas[i]);
+                    }
+
+            });
+       };
 
     }]);
 

@@ -1,8 +1,29 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  ul
-      li(ng-repeat='jogador in players')
-        | {{jogador.nome}}
+    h1= title
+    p Welcome to #{title}
+    select(ng-model='posicao', ng-options='j as j[1] for j in posicoes',ng-change="filtrar()")
+    table.table-bordered.table-striped(data-role='table', data-mode='columntoggle', data-filter='true', data-input='#basic-url')
+      tbody
+          tr
+              th Nome
+              th Apelido
+              th Foto
+              th Valor
+              th Variação
+              th Media
+              th Jogos
+              th Posicao
+              th Status
+          tr(ng-repeat='jogador in players | filter:filtro:strict | orderBy:sorter:sortReverse')
+              td {{jogador.nome}}
+              td {{jogador.apelido}}
+              td
+                img.img-responsive(ng-src="{{jogador.foto.replace('FORMATO','80x80')}}" alt="{{position._id}}" style='width:80px;height:80px;')
+              td {{jogador.preco_num}}
+              td {{jogador.variacao_num}}
+              td {{jogador.media_num}}
+              td {{jogador.jogos_num}}
+              td {{jogador.posicao_id}}
+              td {{jogador.status_id}}

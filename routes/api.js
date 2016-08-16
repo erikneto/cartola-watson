@@ -70,7 +70,7 @@ router.get('/loadcartola/:posicao', function(req, res, next) {
         var players = [];
         
         for(i=0 ; i < body.atletas.length; i++){
-            if(body.atletas[i].posicao_id === parseInt(req.params.posicao)){
+            if(body.atletas[i].posicao_id === parseInt(req.params.posicao) && body.atletas[i].status_id===7){
                 players.push({
                     key: body.atletas[i].atleta_id,
                     name: body.atletas[i].nome,

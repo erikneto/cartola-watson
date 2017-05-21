@@ -20,7 +20,8 @@ var _ = require("lodash");
 router.get('/loadcartola', function(req, res, next) {
     request({
         url: 'https://api.cartolafc.globo.com/atletas/mercado',
-        json: true
+        json: true,
+        headers: {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.62 Safari/537.36'}
     }, function (error, response, body) {
 
         if (!error && response.statusCode === 200) {
@@ -28,17 +29,17 @@ router.get('/loadcartola', function(req, res, next) {
             
         };
         if (error){
-            throw error;
+            console.error(error);
+            res.send(error);
         }
     });
-    
 });
 
 router.get('/loadcartola/:posicao', function(req, res, next) {
     try {
         var credentials = extend({
-            username: '4692b0a4-ec12-446e-8077-311f1d88cbdb',
-            password: 'pLn3I6WjgBu7',
+            username: '34f1ba72-6d60-4a0e-a0ee-a3727ec390fd',
+            password: 'YZ5U6i0xP3iE',
             version: 'v1'         
         });
     }
@@ -61,7 +62,8 @@ router.get('/loadcartola/:posicao', function(req, res, next) {
     
     request({
         url: 'https://api.cartolafc.globo.com/atletas/mercado',
-        json: true
+        json: true,
+        headers: {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.62 Safari/537.36'}
     }, function (error, response, body) {
 
         if (error){

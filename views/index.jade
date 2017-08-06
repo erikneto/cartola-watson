@@ -2,7 +2,7 @@ extends layout
 
 block content
     h1= title
-    p Welcome to #{title}
+    p Welcome to demo do Cartola Watson para video com integração via Toolchain no Bluemix
     select(ng-model='posicao', ng-options='j as j[1] for j in posicoes',ng-change="filtrar()")
     table.table.table-hover.table-bordered(data-role='table', data-mode='columntoggle', data-filter='true', data-input='#basic-url')
       tbody
